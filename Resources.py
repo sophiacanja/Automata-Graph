@@ -15,5 +15,5 @@ class Resources(Node, Arc): #resources is a subclass of both node and arc class
         return self.resources
 
 
-myResource = Resources({'R1' : 2, 'R3' : 4})
-print(myResource.getResourceFreq)
+#myResource = Resources({'R1' : 2, 'R3' : 4})
+#print(myResource.getResourceFreq)

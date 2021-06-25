@@ -13,7 +13,7 @@ class Graph:
     def createArcs(): # helper method
         pass
 
-    def createNodes(): # helper method
+    def createNodes(): # helper method  #make sure to address start and end node
         pass
 
     def isValidTrace():

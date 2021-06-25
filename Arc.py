@@ -3,9 +3,9 @@ import Graph
 class Arc(Graph): 
 
     def __init__(self, relation, resourceSet):
-        self.relation = [] 
-        self.inputNode = ""
-        self.outputNode = ""
+        self.relation = relation              #ex: <A,B>
+        self.inputNode = relation[0]
+        self.outputNode = relation[1]
         self.frequency = 0
         self.resourceSet = resourceSet
 

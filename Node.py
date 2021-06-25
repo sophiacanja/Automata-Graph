@@ -2,7 +2,7 @@ from typing import List
 import Graph
 
 
-class Node(Graph):  #node class is a subclass of graph class
+class Node(Graph):  #node class is a subclass of graph class                #HELP: cannot complie, something wrong with inheritance
 
     def __init__(self, activity, resourceSet):         #sets trace and resources as a list
         self.activity = activity
@@ -12,21 +12,33 @@ class Node(Graph):  #node class is a subclass of graph class
 
 #TODO: pass in resource set into the constructor of the resource class 
 
+    def addInputArc(self, inputArc):
+        self.inputArcs.append(inputArc)
 
-    def setInputArc(self, inputArc):
-        pass
-
-    def setOutputArc(self, outputArc):
-        pass
+    def addOutputArc(self, outputArc):
+        self.outputArcs.append(outputArc)
     
-    def getInputArcs(self):
+    def getInputArcs(self):                     #maybe wont need this method
         return self.inputArcs
 
-    def getOutputArcs(self):
+    def getOutputArcs(self):                    #maybe wont need this method
         return self.outputArcs
     
     def getActivity(self):
         return self.activity
+
+    def isInputArc(self, arc):
+        for item in self.inputArcs:
+            return arc == self.inputArcs[item]
+        return False
+
+    def isOutputArc(self, arc):
+        for item in self.outputArcs:
+            return arc == self.outputArcs[item]
+        return False
     
     
-#myVar = Node(["a", "b"], ["amy", "marie"])
+# myVar = Node("a", ["amy", "marie"])
+# myVar.addInputArc("t")
+# print(myVar.isInputArc("z"))
+# print(myVar.isInputArc("t"))

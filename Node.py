@@ -1,12 +1,10 @@
 from typing import List
-import Graph
 
+class Node():  #node class is a subclass of graph class                #HELP: cannot complie, something wrong with inheritance
 
-class Node(Graph):  #node class is a subclass of graph class                #HELP: cannot complie, something wrong with inheritance
-
-    def __init__(self, activity, resourceSet):         #sets trace and resources as a list
+    def __init__(self, activity):         #sets trace and resources as a list
         self.activity = activity
-        self.resourceSet = resourceSet
+        # self.resourceSet = resourceSet
         self.inputArcs = []
         self.outputArcs = []
 

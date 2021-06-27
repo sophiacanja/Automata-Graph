@@ -5,8 +5,8 @@ class Node():  #node class is a subclass of graph class                #HELP: ca
     def __init__(self, activity):         #sets trace and resources as a list
         self.activity = activity
         # self.resourceSet = resourceSet
-        self.inputArcs = []
-        self.outputArcs = []
+        self.inputNodes = {}
+        self.outputNodes = {}
 
 #TODO: pass in resource set into the constructor of the resource class 
 

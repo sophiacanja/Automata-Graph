@@ -2,6 +2,7 @@ import Graph
 
 class Arc(Graph): 
 
+    # def __init__(self, inputNode, outputNode, resourceSet):
     def __init__(self, relation, resourceSet):
         self.relation = relation              #ex: <A,B>
         self.inputNode = relation[0]

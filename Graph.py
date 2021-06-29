@@ -70,11 +70,10 @@ class Graph:
 
 
         
-
     def createArcs(self): # helper method           #TODO: make arcRelations[] 
         print(self.traceList)
         for currTrace in self.traceList:               #forloop to traverse each trace in self.traceList
-            print("new trace")
+            print("Trace " + str(self.traceList.index(currTrace)+1))
             i = 0 
             j = 1 
             for currActivity in currTrace:              #currTrace[i] will give you specific index of one trace
@@ -83,8 +82,7 @@ class Graph:
                     currActivityNode = self.nodeObjects.get(currTrace[i])
                     nextActivityNode = self.nodeObjects.get(currTrace[j])
                     arcRelation = Arc.Arc(currActivityNode, nextActivityNode) 
-                    print("input node is " + arcRelation.getInputNode().activity)
-                    print("output node is " + arcRelation.getOutputNode().activity)
+                    print("arc: <" + arcRelation.getInputNode().activity + "," + arcRelation.getOutputNode().activity + ">")
                     i += 1
                     j += 1
                     
@@ -120,7 +118,7 @@ class Graph:
 myVar = Graph([["B","C","G"],["A","C","G"],["B","C","E","G"],["A","C","E","H"],["B","D","F","G"],["A","D","F","G"]],[{"R1":15,"R2":8,"R3":12,"R6":4,"R8":6,"R9":11,"R12":24,"R14":5,"R15":2},{"R2":10,"R5":24,"R6":3,"R7":12,"R9":4,"R11":22,"R14":8,},{"R3":2,"R6":12,"R12":1,"R15":36,},{"R1":12,"R6":3,"R9":1,},{"R1":2,"R2":1,"R3":1,"R8":1,"R9":2,"R11":6,"R14":1,"R15":2,},{"R4":1,"R6":1,"R8":2,"R13":1,}])
 
 myVar.createNodes()
-#myVar.createArcs()
+myVar.createArcs()
 
 myVar.buildGraph()
 

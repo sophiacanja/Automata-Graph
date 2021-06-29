@@ -1,18 +1,15 @@
-import Graph
 
-class Arc(Graph): 
+class Arc(): 
 
-    # def __init__(self, inputNode, outputNode, resourceSet):
-    def __init__(self, relation, resourceSet):
-        self.relation = relation              #ex: <A,B>
-        self.inputNode = relation[0]
-        self.outputNode = relation[1]
+    def __init__(self, inputNode, outputNode): #took out resourceSet
+        self.inputNode = inputNode
+        self.outputNode = outputNode               
         self.frequency = 0
-        self.resourceSet = resourceSet
+       # self.resourceSet = resourceSet
 
 #TODO: pass in resource set into the constructor of the resource class 
 
-    def setInputNode(self, inputNode):
+    def setInputNode(self, inputNode): 
         self.inputNode = inputNode
 
     def setOutputNode(self, outputNode):

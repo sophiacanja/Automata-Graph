@@ -73,6 +73,7 @@ class Graph:
     def createArcs(self): # helper method           #TODO: make arcRelations[] 
         print(self.traceList)
         for currTrace in self.traceList:               #forloop to traverse each trace in self.traceList
+            print()
             print("Trace " + str(self.traceList.index(currTrace)+1))
             i = 0 
             j = 1 
@@ -82,10 +83,9 @@ class Graph:
                     currActivityNode = self.nodeObjects.get(currTrace[i])                     
                     nextActivityNode = self.nodeObjects.get(currTrace[j])
                     arcRelation = Arc.Arc(currActivityNode, nextActivityNode) 
-                    print("arc: <" + arcRelation.getInputNode().activity + "," + arcRelation.getOutputNode().activity + ">")
+                    print("arc: <" + arcRelation.relation + ">")
                     i += 1
                     j += 1
-                    print("curr arc node created is  " + arcRelation.relation)
                     if(not(self.arcRelations.get(arcRelation.relation))):                   #puts non-duplicate arc nodes into dictionary
                         self.arcRelations[arcRelation.relation] = arcRelation               #key = string  ---- value = arcNode  EX: "BC" = <nodeB, nodeC> 
                     else: 

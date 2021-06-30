@@ -70,12 +70,10 @@ class Graph:
 
 
         
-
-    def createArcs(self): # helper method          
+    def createArcs(self): # helper method           #TODO: make arcRelations[] 
         print(self.traceList)
-        for currTrace in self.traceList:                                                    #forloop to traverse each trace in self.traceList
-            print()
-            print("new trace")
+        for currTrace in self.traceList:               #forloop to traverse each trace in self.traceList
+            print("Trace " + str(self.traceList.index(currTrace)+1))
             i = 0 
             j = 1 
             for currActivity in currTrace:                                                  #currTrace[i] will give you specific index of one trace
@@ -83,9 +81,8 @@ class Graph:
                 if(j < len(currTrace)):                                                     #checks if the loop is at the end of a trace
                     currActivityNode = self.nodeObjects.get(currTrace[i])                     
                     nextActivityNode = self.nodeObjects.get(currTrace[j])
-                    arcRelation = Arc.Arc(currActivityNode, nextActivityNode)               #creates an arcNode that goes from currentNode ---> nextNode 
-                    # print("input node is " + arcRelation.getInputNode().activity)
-                    # print("output node is " + arcRelation.getOutputNode().activity)
+                    arcRelation = Arc.Arc(currActivityNode, nextActivityNode) 
+                    print("arc: <" + arcRelation.getInputNode().activity + "," + arcRelation.getOutputNode().activity + ">")
                     i += 1
                     j += 1
                     print("curr arc node created is  " + arcRelation.relation)

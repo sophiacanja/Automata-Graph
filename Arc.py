@@ -3,8 +3,9 @@ class Arc():
 
     def __init__(self, inputNode, outputNode): #took out resourceSet
         self.inputNode = inputNode
-        self.outputNode = outputNode               
-        self.frequency = 0
+        self.outputNode = outputNode       
+        self.relation = str(inputNode.activity) + str(outputNode.activity )     
+        self.frequency = 1
        # self.resourceSet = resourceSet
 
 #TODO: pass in resource set into the constructor of the resource class 
@@ -19,13 +20,16 @@ class Arc():
         return self.inputNode
 
     def getOutputNode(self):
-        return self.outputNode 
+        return str(self.outputNode) 
 
-    def setArcFrequency(self, frequency):
-        self.frequency = frequency
+    def addArcFrequency(self):
+        self.frequency += 1
 
     def getArcFrequency(self):
         return self.frequency
+
+    def getRelation(self):
+        return self.relation
 
     
 #myVar  = Arc(['a','b'] )

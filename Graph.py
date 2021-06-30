@@ -8,7 +8,7 @@ class Graph:
         self.traceList = traces
         self.resourceList = resources
         self.nodeObjects = {}
-        self.arcRelations = []
+        self.arcRelations = {}
         # self.inputs = []
         # self.outputs = []
         # self.data = data
@@ -71,22 +71,35 @@ class Graph:
 
         
 
-    def createArcs(self): # helper method           #TODO: make arcRelations[] 
+    def createArcs(self): # helper method          
         print(self.traceList)
-        for currTrace in self.traceList:               #forloop to traverse each trace in self.traceList
+        for currTrace in self.traceList:                                                    #forloop to traverse each trace in self.traceList
+            print()
             print("new trace")
             i = 0 
             j = 1 
-            for currActivity in currTrace:              #currTrace[i] will give you specific index of one trace
+            for currActivity in currTrace:                                                  #currTrace[i] will give you specific index of one trace
                 # ex: [B, C, G]
-                if(j < len(currTrace)):
-                    currActivityNode = self.nodeObjects.get(currTrace[i])
+                if(j < len(currTrace)):                                                     #checks if the loop is at the end of a trace
+                    currActivityNode = self.nodeObjects.get(currTrace[i])                     
                     nextActivityNode = self.nodeObjects.get(currTrace[j])
-                    arcRelation = Arc.Arc(currActivityNode, nextActivityNode) 
-                    print("input node is " + arcRelation.getInputNode().activity)
-                    print("output node is " + arcRelation.getOutputNode().activity)
+                    arcRelation = Arc.Arc(currActivityNode, nextActivityNode)               #creates an arcNode that goes from currentNode ---> nextNode 
+                    # print("input node is " + arcRelation.getInputNode().activity)
+                    # print("output node is " + arcRelation.getOutputNode().activity)
                     i += 1
                     j += 1
+                    print("curr arc node created is  " + arcRelation.relation)
+                    if(not(self.arcRelations.get(arcRelation.relation))):                   #puts non-duplicate arc nodes into dictionary
+                        self.arcRelations[arcRelation.relation] = arcRelation               #key = string  ---- value = arcNode  EX: "BC" = <nodeB, nodeC> 
+                    else: 
+                        self.arcRelations.get(arcRelation.relation).addArcFrequency()       #if arcNode is duplicate, update arc frequency and add 1 
+
+       # print(self.arcRelations.get("EG").outputNode) ---> problem: having trouble accessing other methods when using the dict, 
+       #line 98 provdies address of object instead of actual outputNode
+        print()
+        print("CURRENT ARC LIST: ")          #prints the arcNodes in the dictionary
+        for arcs in self.arcRelations:
+            print(arcs)
                     
                 
                 
@@ -120,9 +133,9 @@ class Graph:
 myVar = Graph([["B","C","G"],["A","C","G"],["B","C","E","G"],["A","C","E","H"],["B","D","F","G"],["A","D","F","G"]],[{"R1":15,"R2":8,"R3":12,"R6":4,"R8":6,"R9":11,"R12":24,"R14":5,"R15":2},{"R2":10,"R5":24,"R6":3,"R7":12,"R9":4,"R11":22,"R14":8,},{"R3":2,"R6":12,"R12":1,"R15":36,},{"R1":12,"R6":3,"R9":1,},{"R1":2,"R2":1,"R3":1,"R8":1,"R9":2,"R11":6,"R14":1,"R15":2,},{"R4":1,"R6":1,"R8":2,"R13":1,}])
 
 myVar.createNodes()
-#myVar.createArcs()
+myVar.createArcs()
 
-myVar.buildGraph()
+#myVar.buildGraph()
 
 #print("printing output nodes for B"  )
 #print(myVar.nodeObjects.get("B").outputNodes)

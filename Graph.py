@@ -15,7 +15,7 @@ class Graph:
         
         # relations: [A,B]
 
-    def buildGraph(self):
+    def createIOnodesList(self):
         for currTrace in self.traceList:
             print("Trace " + str(self.traceList.index(currTrace)+1))
             prev = 0
@@ -69,10 +69,14 @@ class Graph:
 
 
 
-        
-    def createArcs(self): # helper method           #TODO: make arcRelations[] 
+    def buildGraph(self):                                                                   #creates nodes and arc relations by calling helper methods
+        createNodes = self.createNodes()
+        createArcs = self.createArcs()
+
+    def createArcs(self):                                                                   # helper method that creates arc relations 
         print(self.traceList)
-        for currTrace in self.traceList:               #forloop to traverse each trace in self.traceList
+        print("CALLING CREATE ARCS METHOD")
+        for currTrace in self.traceList:                                                    #forloop to traverse each trace in self.traceList
             print()
             print("Trace " + str(self.traceList.index(currTrace)+1))
             i = 0 
@@ -90,36 +94,31 @@ class Graph:
                         self.arcRelations[arcRelation.relation] = arcRelation               #key = string  ---- value = arcNode  EX: "BC" = <nodeB, nodeC> 
                     else: 
                         self.arcRelations.get(arcRelation.relation).addArcFrequency()       #if arcNode is duplicate, update arc frequency and add 1 
+       
 
-       # print(self.arcRelations.get("EG").outputNode) ---> problem: having trouble accessing other methods when using the dict, 
-       #line 98 provdies address of object instead of actual outputNode
-        print()
-        print("CURRENT ARC LIST: ")          #prints the arcNodes in the dictionary
+      #  print(self.arcRelations.get('BC').outputNode.activity)   ---> this call allows you to get the val from dict and access outputNode of 'BC'(funct return is 'C')
+                   
+                
+                
+        
+    def printArcList(self):                                                                 #prints the arcNodes in the dictionary
+        print("CURRENT ARC LIST: ")         
         for arcs in self.arcRelations:
             print(arcs)
-                    
-                
-                
-        
-        
         
 
-    def createNodes(self): # helper method
+    def createNodes(self):                                                                  # helper method creates unique nodes 
         uniqueNodes = np.unique(np.array([elem for singleList in self.traceList for elem in singleList]))
         for nodeName in uniqueNodes:
             newNode = Node.Node(nodeName)
-            # old method: add to new object to nodeObjects list
-            # self.nodeObjects.append(newNode)
-
-            # new method: add nodeName and new object to nodeObjects dictionary
-            # ex: nodeObjects['A'] = nodeA
-            self.nodeObjects[nodeName] = newNode
-       
-        # for i in self.nodeObjects:  #printing out node objects
-        #      print(i.activity)
-        # print("COMPLETED")
+            self.nodeObjects[nodeName] = newNode            # new method: add nodeName and new object to nodeObjects dictionary
+                                                            # ex: nodeObjects['A'] = nodeA
         return self.nodeObjects
    
+    def printNodesList(self):
+        print("CURRENT NODES LIST")
+        for nodes in self.nodeObjects:  #printing out node objects
+            print(nodes)
 
     def isValidTrace():
         return False
@@ -129,8 +128,10 @@ class Graph:
 
 myVar = Graph([["B","C","G"],["A","C","G"],["B","C","E","G"],["A","C","E","H"],["B","D","F","G"],["A","D","F","G"]],[{"R1":15,"R2":8,"R3":12,"R6":4,"R8":6,"R9":11,"R12":24,"R14":5,"R15":2},{"R2":10,"R5":24,"R6":3,"R7":12,"R9":4,"R11":22,"R14":8,},{"R3":2,"R6":12,"R12":1,"R15":36,},{"R1":12,"R6":3,"R9":1,},{"R1":2,"R2":1,"R3":1,"R8":1,"R9":2,"R11":6,"R14":1,"R15":2,},{"R4":1,"R6":1,"R8":2,"R13":1,}])
 
-myVar.createNodes()
-myVar.createArcs()
+
+myVar.buildGraph()
+myVar.printArcList()
+myVar.printNodes()
 
 #myVar.buildGraph()
 

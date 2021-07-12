@@ -75,46 +75,52 @@ class Graph:
 
 
 
-    def buildGraph(self):                                                                   #creates nodes and arc relations by calling helper methods
+    def buildGraph(self):                                                                   # creates nodes and arc relations by calling helper methods
         createNodes = self.createNodes()
         createArcs = self.createArcs()
 
     def createArcs(self):                                                                   # helper method that creates arc relations 
         print(self.traceList)
         print("CALLING CREATE ARCS METHOD")
-        for currTrace in self.traceList:                                                    #forloop to traverse each trace in self.traceList
+        for currTrace in self.traceList:                                                    # forloop to traverse each trace in self.traceList
             print()
             print("Trace " + str(self.traceList.index(currTrace)+1))
             i = 0 
             j = 1 
-            for currActivity in currTrace:                                                  #currTrace[i] will give you specific index of one trace
+            for currActivity in currTrace:                                                  # currTrace[i] will give you specific index of one trace
                 # ex: [B, C, G]
-                if(j < len(currTrace)):                                                     #checks if the loop is at the end of a trace
+                if (j < len(currTrace)):                                                     # checks if the loop is at the end of a trace
                     currActivityNode = self.nodeObjects.get(currTrace[i])                     
                     nextActivityNode = self.nodeObjects.get(currTrace[j])
+
+                    # creates an arc relationship from two nodes
                     arcRelation = Arc.Arc(currActivityNode, nextActivityNode) 
                     print("arc: <" + arcRelation.relation + ">")
                     i += 1
                     j += 1
-                    if(not(self.arcRelations.get(arcRelation.relation))):                   #puts non-duplicate arc nodes into dictionary
-                        self.arcRelations[arcRelation.relation] = arcRelation               #key = string  ---- value = arcNode  EX: "BC" = <nodeB, nodeC> 
+
+                    if (not(self.arcRelations.get(arcRelation.relation))):                   # puts non-duplicate arc nodes into dictionary
+                        self.arcRelations[arcRelation.relation] = arcRelation               # key = string  ---- value = arcNode  EX: "BC" = <nodeB, nodeC> 
                     else: 
-                        self.arcRelations.get(arcRelation.relation).addArcFrequency()       #if arcNode is duplicate, update arc frequency and add 1 
+                        self.arcRelations.get(arcRelation.relation).addArcFrequency()       # if arcNode is duplicate, update arc frequency and add 1 
        
 
-      #  print(self.arcRelations.get('BC').outputNode.activity)   ---> this call allows you to get the val from dict and access outputNode of 'BC'(funct return is 'C')
+      # print(self.arcRelations.get('BC').outputNode.activity)   ---> this call allows you to get the val from dict and access outputNode of 'BC'(funct return is 'C')
                    
                 
                 
         
-    def printArcList(self):                                                                 #prints the arcNodes in the dictionary
+    def printArcList(self):                                                                 # prints the arcNodes in the dictionary
         print("CURRENT ARC LIST: ")         
         for arcs in self.arcRelations:
             print(arcs)
         
 
     def createNodes(self):                                                                  # helper method creates unique nodes 
+        # generates an array of unique nodes from traces
         uniqueNodes = np.unique(np.array([elem for singleList in self.traceList for elem in singleList]))
+
+        # creates node objects from array of unique nodes
         for nodeName in uniqueNodes:
             newNode = Node.Node(nodeName)
             self.nodeObjects[nodeName] = newNode            # new method: add nodeName and new object to nodeObjects dictionary
@@ -123,7 +129,7 @@ class Graph:
    
     def printNodesList(self):
         print("CURRENT NODES LIST")
-        for nodes in self.nodeObjects:  #printing out node objects
+        for nodes in self.nodeObjects:  # printing out node objects
             print(nodes)
 
     def isValidTrace():
@@ -140,10 +146,10 @@ myVar.createIOnodesList()
 myVar.printArcList()
 myVar.printNodesList()
 
-#myVar.buildGraph()
+# myVar.buildGraph()
 
-#print("printing output nodes for B"  )
-#print(myVar.nodeObjects.get("B").outputNodes)
+# print("printing output nodes for B"  )
+# print(myVar.nodeObjects.get("B").outputNodes)
 
 
 

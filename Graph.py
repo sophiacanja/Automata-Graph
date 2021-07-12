@@ -67,6 +67,12 @@ class Graph:
                 print("----------------------")
             print()
 
+        print("INPUT NODES LIST FOR ONE NODE")
+        for node in self.nodeObjects:
+            print("Node: " + node.activity)
+            print("input nodes list: ")
+            print(node.inputNodes)
+
 
 
     def buildGraph(self):                                                                   #creates nodes and arc relations by calling helper methods
@@ -130,8 +136,9 @@ myVar = Graph([["B","C","G"],["A","C","G"],["B","C","E","G"],["A","C","E","H"],[
 
 
 myVar.buildGraph()
+myVar.createIOnodesList()
 myVar.printArcList()
-myVar.printNodes()
+myVar.printNodesList()
 
 #myVar.buildGraph()
 
